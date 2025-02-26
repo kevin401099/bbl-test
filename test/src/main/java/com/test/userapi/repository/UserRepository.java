@@ -30,6 +30,7 @@ public class UserRepository {
             //validate
             return null;
         }
+        userList.add(user);
         return user;
     }
 
