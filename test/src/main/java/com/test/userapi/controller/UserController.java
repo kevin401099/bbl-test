@@ -3,17 +3,16 @@ package com.test.userapi.controller;
 import com.test.userapi.domain.User;
 import com.test.userapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
+    @Autowired
     private final UserRepository userRepository;
 
     public UserController(UserRepository userRepository) {
@@ -26,6 +25,7 @@ public class UserController {
         return userList != null ? ResponseEntity.ok(userList) : ResponseEntity.notFound().build();
     }
 
+    //missing service class.
     @GetMapping("/{userId}")
     public ResponseEntity<User> getUserById(@PathVariable long id){
         User user = userRepository.findById(id);
@@ -33,6 +33,7 @@ public class UserController {
     }
 
     @PostMapping("/")
+    //Add dto class for input
     public User createUser(@RequestBody User user){
         return userRepository.save(user);
     }
